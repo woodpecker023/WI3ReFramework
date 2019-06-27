@@ -1,0 +1,370 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="System_1___WI3_PDFs" this:System_1___WI3_PDFs.in_InvoiceID="589808" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mv="clr-namespace:Microsoft.VisualBasic;assembly=Microsoft.VisualBasic, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="clr-namespace:Pdf_To_Excel;assembly=Pdf_To_Excel" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:s1="clr-namespace:System;assembly=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:sa="clr-namespace:System.Activities;assembly=System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.Collections;assembly=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:scg1="clr-namespace:System.Collections.Generic;assembly=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sd1="clr-namespace:System.Data;assembly=System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:sd2="clr-namespace:System.Data;assembly=System.Data.DataSetExtensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:sd3="clr-namespace:System.Diagnostics;assembly=System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:sd4="clr-namespace:System.Drawing;assembly=System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" xmlns:si="clr-namespace:System.IO;assembly=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:sl="clr-namespace:System.Linq;assembly=System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:str="clr-namespace:System.Text.RegularExpressions;assembly=System" xmlns:sx="clr-namespace:System.Xml;assembly=System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:sxl="clr-namespace:System.Xml.Linq;assembly=System.Xml.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_InvoiceID" Type="InArgument(x:String)" />
+    <x:Property Name="out_Date" Type="OutArgument(x:String)" />
+    <x:Property Name="out_TaxID" Type="OutArgument(x:String)" />
+    <x:Property Name="out_Vendor" Type="OutArgument(x:String)" />
+    <x:Property Name="out_Subtotal" Type="OutArgument(x:Int32)" />
+    <x:Property Name="out_Tax" Type="OutArgument(x:Int32)" />
+    <x:Property Name="out_Total" Type="OutArgument(x:Int32)" />
+    <x:Property Name="in_WIID" Type="InArgument(x:String)" />
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="out_Currency" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ItemDescription" Type="OutArgument(x:String)" />
+  </x:Members>
+  <sap:VirtualizedContainerService.HintSize>1657.6,2922.4</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <mva:VisualBasic.Settings>Assembly references and imported namespaces for internal implementation</mva:VisualBasic.Settings>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="12">
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="14">
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Preconditions : &#xA;1) in_InvoiceID as input parameter&#xA;2) PDF File opened in Chrome browser&#xA;3) PDF File downloaded to relativePath/Data/Invoice-InvoiceNo.pdf&#xA;Results:&#xA;out_Parameters that are required for further Automation" DisplayName="Two Different PDFs" sap:VirtualizedContainerService.HintSize="1617.6,2842.4" sap2010:WorkflowViewState.IdRef="Sequence_78">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Boolean" Name="Type2PDF" />
+      <Variable x:TypeArguments="x:String" Name="PDFValue" />
+      <Variable x:TypeArguments="sd:DataRow" Name="dr" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe  Invoice-227...'" sap:VirtualizedContainerService.HintSize="1595.2,379.2" sap2010:WorkflowViewState.IdRef="BrowserScope_3" InformativeScreenshot="af9634e65f5ffcb871a51464ac6780e7" Selector="&lt;html app='chrome.exe' title='Invoice-*.pdf' /&gt;">
+      <ui:BrowserScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="336.8,232" sap2010:WorkflowViewState.IdRef="Sequence_95">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ImageFound DisplayName="Image Exists 'chrome.exe Invoice-9547...'" Found="[Type2PDF]" sap:VirtualizedContainerService.HintSize="314.4,107.2" sap2010:WorkflowViewState.IdRef="ImageFound_1">
+              <ui:ImageFound.Image>
+                <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" InitialScalingFactor="1.25" TargetImageBase64="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" />
+              </ui:ImageFound.Image>
+              <ui:ImageFound.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='Invoice-*.pdf - Google Chrome' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
+              </ui:ImageFound.Target>
+            </ui:ImageFound>
+          </Sequence>
+        </ActivityAction>
+      </ui:BrowserScope.Body>
+    </ui:BrowserScope>
+    <ui:ReadPDFText DisplayName="Read PDF Text" FileName="[&quot;Data/PDFs/Invoice-&quot;+in_InvoiceID+&quot;.pdf&quot;]" sap:VirtualizedContainerService.HintSize="1595.2,60" sap2010:WorkflowViewState.IdRef="ReadPDFText_6" Range="All" Text="[PDFValue]" />
+    <If Condition="[Type2PDF]" DisplayName="Type 1 or 2 " sap:VirtualizedContainerService.HintSize="1595.2,1718.4" sap2010:WorkflowViewState.IdRef="If_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="820.8,1568.8" sap2010:WorkflowViewState.IdRef="Sequence_92">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:Boolean" Name="Type2A" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ImageFound DisplayName="Image Exists 'chrome.exe Invoice-2277...'" Found="[Type2A]" sap:VirtualizedContainerService.HintSize="798.4,107.2" sap2010:WorkflowViewState.IdRef="ImageFound_3">
+            <ui:ImageFound.Image>
+              <ui:ImageTarget Image="{x:Null}" Accuracy="0.7" InitialScalingFactor="1.25" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAADoAAAAaCAYAAADmF08eAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAUoSURBVFhH7ZZpTJRXFIb7q/IDQSRFWRTrCo4WFEdQYl1aIghURdTUGlxQUVQErVJLCxZNtG6tWyG1okZRgtaYSmXpsEaoIFApIqCAgIqswz4zzDDz9GOpEgtWwV/Im9wfc797zz3PfO8953uPd0QDoP1NA6D9TQOg/U0DoP1N7yqokrQT7ixxdsDe3r7HscD9JzLqFLR27nrbUj/5ld3LXdgaco8mhRo0tUQHfs4ip39zcMDBYQFOC11Z6eHLoUvJlDapEFb2qJdAVeSE72XX9m14eXkJwxPHidpo6YpwWr+JLe1zXnjvvUJuY8srA/dFrflH+NRAl2m7b1HbLPyd6nLOuAxHx8CSxc/z2IrnhlUsmWfJBHMxzjvDyKnrOaeXQDXIpWU8eVxKaWnbyOeUiwGDTVwJysijsKRzvkyKXK3p3PP21ZongH6gi9VXL0B/cRmG7jg3zmfmUdSeRwnFRQ/JyYjm5OopGJlMxf18LvUt3aP+zx1t4vIXhuiauhFe3oTyP2xKKrMiOHPQj22b1rHW3QOvrw9xIamYJpUatTSZoC892OAf/sIB6grij/vg4XWYmNLmbmK+AtRsExEVQh6d6zqkojb3HG7mQzGyP0qmVC5cKTUVKZc5dfwcccUylMLBfQDVUJ92ijXzxNg6uuHpswOfzatwFJtjbu1G8N16FLJnxO1bwFhTMRsu5tLQoqIs6hvmm41lru918qUCfJ9BBQnPQ1d+iK7hEkIeNaDQtJJ9zBVLkR0BSTXIVH0CbSBhz1xGT17BCUkmeUXFFBfmkRG6EUu94SwKLqBeKCTNpdEE2I1ihPVmLieF4TN3DKPm+HLtfg0tPdj/jUFRkOInZqiODQFpUmStwksoTCM+NoW86haEn30BVVJxP5mE2/nUtLSiUSuoe/qAO+HbEA/RxjbwL6QywTMaGY8lgdiPGYmFeCLDR80n4Pd8agU/dY/ZG9AW0vxt0NeZjl+K8AaFLS+rT3dU0/AASch+dm50Y+lnDnwyexaz51hgOEgLmz3pAmjHiRr5Iy66jUdX632MXU+TXaN4ZcV+c9BmIjebMUTPjiP364RC2TndRb0HFQ6PCliEteVMFq71xm/fUYIuXCMybDu2eoOZ2QVU8eAS66caYmI8DL3xyziZVo28zU896I1B5ekEzjJAZ5IXUUKeqm5C9x604Qae5vqYOB8kLquAp5VSGuRKpDHeWArWtfZP7QBV5HHBYzojxy/m+9AjLBeNYPLy49yuEqpjD6xvBioj/5IHVgb6TN8VxRPhw6G7sL0HlUnwnqSH/tT1nI5O4+/sdOKv/sgWu3HoaQ3CwjeJalkjOefcmWYyhoWHEiitryQzeAUiYxGuP6RQKRfudme4ruoR1NSJwNCrXL8RQUTEb1wLO8uxb9cxX2SI8YythGZXo2gvcGoqU6/wc/BFEkv62l7UNWSe9cHZZgpW4hnYzrHDaekadhzYj9tHQxixLITslCBWWxkx2vEAcSWN7ZZSVaVzcqkZRuaLOXyrHHk3PusJVFtbH9MJ5kwUiRCJJjHZYgpim49xXPMd5xMLkD4vcEqhvbhgYT4P/8Sq12kvrZTdjSUmPotnirY23FUaVHUlZKcmIomOIiomlqTULAorqnh4W0LsnWLqKnJJkcSQmF3eXvI7timpEqq1JCaJexWybu2raSoiTfIHyflSlG0LNAoeZwp5RN3k5s2OERkZKZwpIeGW4KaCChqFD5QXodTUF/zZfkZO1Wu1l/6jAdD+JfgHAUFudll7yroAAAAASUVORK5CYII=" />
+            </ui:ImageFound.Image>
+            <ui:ImageFound.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='Invoice-*.pdf - Google Chrome' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
+            </ui:ImageFound.Target>
+          </ui:ImageFound>
+          <If Condition="[Type2A]" sap:VirtualizedContainerService.HintSize="798.4,1296.8" sap2010:WorkflowViewState.IdRef="If_3">
+            <If.Then>
+              <Sequence DisplayName="Type 2" sap:VirtualizedContainerService.HintSize="336.8,1147.2" sap2010:WorkflowViewState.IdRef="Sequence_91">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="Regex" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <p:PdfToExcel OutputDatatable="{x:Null}" DisplayName="Pdf to excel" sap:VirtualizedContainerService.HintSize="314.4,22.4" sap2010:WorkflowViewState.IdRef="PdfToExcel_7" InputText="[PDFValue]" Keywords="[{&quot;Vendor:,Date&quot;, &quot;Date:,Address&quot;, &quot;Tax ID:,City&quot;, &quot;Total,Subtotal&quot;, &quot;Subtotal:,Tax&quot;, &quot;Tax:,Total&quot;}]" OutputDataRow="[dr]" />
+                <Assign sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_22">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_Vendor]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[dr(0).ToString]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_23">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_Date]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[dr(1).ToString]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_24">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_TaxID]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[dr(2).ToString]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_31">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_ItemDescription]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[dr(3).ToString.Substring(1, (dr(3).ToString.Length)-1).Trim]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:Matches sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Matches_1" Input="[out_ItemDescription]" IsBuilderTabModified="False" Pattern="^\D+" RegexOption="IgnoreCase, Compiled" Result="[Regex]" />
+                <Assign sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_32">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_ItemDescription]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[Regex(0).ToString]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_25">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[out_Subtotal]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">[CINT(dr(4).ToString.Trim.Substring(0,dr(4).ToString.length-3))]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_26">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[out_Tax]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">[CINT(dr(5).ToString.Trim.Substring(0,dr(5).ToString.length-3))]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_27">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[out_Total]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">[out_Tax + out_Subtotal]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_28">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_Currency]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[dr(4).ToString.Trim.Substring(dr(4).ToString.Length-3)]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence sap:VirtualizedContainerService.HintSize="436.8,456.8" sap2010:WorkflowViewState.IdRef="Sequence_94">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe  Invoice-227...'" sap:VirtualizedContainerService.HintSize="414.4,332" sap2010:WorkflowViewState.IdRef="BrowserScope_2" InformativeScreenshot="0d31daecb530aaf8cde01c3163344173" Selector="&lt;html app='chrome.exe' title='Invoice-*.pdf' /&gt;">
+                  <ui:BrowserScope.Body>
+                    <ActivityAction x:TypeArguments="x:Object">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="336.8,184.8" sap2010:WorkflowViewState.IdRef="Sequence_93">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="NavigateTo_2" Url="[in_Config(&quot;System1 URL&quot;).ToString]" />
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:BrowserScope.Body>
+                </ui:BrowserScope>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Type 1" sap:VirtualizedContainerService.HintSize="749.6,1368.8" sap2010:WorkflowViewState.IdRef="Sequence_79">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:Boolean" Name="Type1A" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ImageFound DisplayName="Image Exists 'chrome.exe Invoice-5898...'" Found="[Type1A]" sap:VirtualizedContainerService.HintSize="727.2,107.2" sap2010:WorkflowViewState.IdRef="ImageFound_2">
+            <ui:ImageFound.Image>
+              <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" InitialScalingFactor="1.25" TargetImageBase64="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" />
+            </ui:ImageFound.Image>
+            <ui:ImageFound.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='Invoice-*.pdf - Google Chrome' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
+            </ui:ImageFound.Target>
+          </ui:ImageFound>
+          <If Condition="[Type1A]" sap:VirtualizedContainerService.HintSize="727.2,1096.8" sap2010:WorkflowViewState.IdRef="If_2">
+            <If.Then>
+              <Sequence DisplayName="Type 1 A" sap:VirtualizedContainerService.HintSize="265.6,947.2" sap2010:WorkflowViewState.IdRef="Sequence_88">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <p:PdfToExcel OutputDatatable="{x:Null}" DisplayName="Pdf to excel" sap:VirtualizedContainerService.HintSize="243.2,22.4" sap2010:WorkflowViewState.IdRef="PdfToExcel_5" InputText="[PDFValue]" Keywords="[{&quot;Date:,Vendor&quot;, &quot;Vendor:,Tax ID&quot;, &quot;Tax ID:,Client&quot;, &quot;Total, 1&quot;,&quot;Subtotal:,Tax&quot;,&quot;Tax:,Total&quot;}]" OutputDataRow="[dr]" />
+                <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_Date]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[dr(0).ToString]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_Vendor]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[dr(1).ToString]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_13">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_TaxID]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[dr(2).ToString]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_30">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_ItemDescription]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[dr(3).ToString]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_14">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[out_Subtotal]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">[CINT(dr(4).ToString.Trim.Substring(0,dr(4).ToString.length-3))]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_15">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[out_Tax]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">[CINT(dr(5).ToString.Trim.Substring(0,dr(5).ToString.length-3))]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_16">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[out_Total]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">[out_Tax + out_Subtotal]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_29">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_Currency]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[dr(3).ToString.Substring(dr(3).ToString.Length-3)]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Type 1 B" sap:VirtualizedContainerService.HintSize="436.8,456.8" sap2010:WorkflowViewState.IdRef="Sequence_89">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe  Invoice-227...'" sap:VirtualizedContainerService.HintSize="414.4,332" sap2010:WorkflowViewState.IdRef="BrowserScope_4" InformativeScreenshot="0d31daecb530aaf8cde01c3163344173" Selector="&lt;html app='chrome.exe' title='Invoice-*.pdf' /&gt;">
+                  <ui:BrowserScope.Body>
+                    <ActivityAction x:TypeArguments="x:Object">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="336.8,184.8" sap2010:WorkflowViewState.IdRef="Sequence_96">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="NavigateTo_5" Url="[in_Config(&quot;System1 URL&quot;).ToString]" />
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:BrowserScope.Body>
+                </ui:BrowserScope>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+      </If.Else>
+    </If>
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe  Invoice-560...'" sap:VirtualizedContainerService.HintSize="1524,332" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="8beebe2d574bf7683066eeb9231f356d" Selector="&lt;html app='chrome.exe' title='Invoice-*.pdf' /&gt;">
+      <ui:BrowserScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="336.8,184.8" sap2010:WorkflowViewState.IdRef="Sequence_90">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="NavigateTo_1" Url="[in_Config(&quot;System1 URL&quot;).ToString]" />
+          </Sequence>
+        </ActivityAction>
+      </ui:BrowserScope.Body>
+    </ui:BrowserScope>
+  </Sequence>
+</Activity>
