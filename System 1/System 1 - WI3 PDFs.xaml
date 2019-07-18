@@ -12,11 +12,11 @@
     <x:Property Name="out_Currency" Type="OutArgument(x:String)" />
     <x:Property Name="out_ItemDescription" Type="OutArgument(x:String)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1657.6,2922.4</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1586.4,2822.4</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <mva:VisualBasic.Settings>Assembly references and imported namespaces for internal implementation</mva:VisualBasic.Settings>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="12">
+    <scg:List x:TypeArguments="x:String" Capacity="7">
       <x:String>UiPath.Core</x:String>
       <x:String>UiPath.Core.Activities</x:String>
       <x:String>System</x:String>
@@ -44,7 +44,7 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Preconditions : &#xA;1) in_InvoiceID as input parameter&#xA;2) PDF File opened in Chrome browser&#xA;3) PDF File downloaded to relativePath/Data/Invoice-InvoiceNo.pdf&#xA;Results:&#xA;out_Parameters that are required for further Automation" DisplayName="Two Different PDFs" sap:VirtualizedContainerService.HintSize="1617.6,2842.4" sap2010:WorkflowViewState.IdRef="Sequence_78">
+  <Sequence sap2010:Annotation.AnnotationText="Preconditions : &#xA;1) in_InvoiceID as input parameter&#xA;2) PDF File opened in Chrome browser&#xA;3) PDF File downloaded to relativePath/Data/Invoice-InvoiceNo.pdf&#xA;Results:&#xA;out_Parameters that are required for further Automation" DisplayName="Two Different PDFs" sap:VirtualizedContainerService.HintSize="1546.4,2742.4" sap2010:WorkflowViewState.IdRef="Sequence_78">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Name="Type2PDF" />
       <Variable x:TypeArguments="x:String" Name="PDFValue" />
@@ -56,7 +56,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe  Invoice-227...'" sap:VirtualizedContainerService.HintSize="1595.2,379.2" sap2010:WorkflowViewState.IdRef="BrowserScope_3" InformativeScreenshot="af9634e65f5ffcb871a51464ac6780e7" Selector="&lt;html app='chrome.exe' title='Invoice-*.pdf' /&gt;">
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe  Invoice-227...'" sap:VirtualizedContainerService.HintSize="1524,379.2" sap2010:WorkflowViewState.IdRef="BrowserScope_3" InformativeScreenshot="af9634e65f5ffcb871a51464ac6780e7" Selector="&lt;html app='chrome.exe' title='Invoice-*.pdf' /&gt;">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -80,8 +80,8 @@
         </ActivityAction>
       </ui:BrowserScope.Body>
     </ui:BrowserScope>
-    <ui:ReadPDFText DisplayName="Read PDF Text" FileName="[&quot;Data/PDFs/Invoice-&quot;+in_InvoiceID+&quot;.pdf&quot;]" sap:VirtualizedContainerService.HintSize="1595.2,60" sap2010:WorkflowViewState.IdRef="ReadPDFText_6" Range="All" Text="[PDFValue]" />
-    <If Condition="[Type2PDF]" DisplayName="Type 1 or 2 " sap:VirtualizedContainerService.HintSize="1595.2,1718.4" sap2010:WorkflowViewState.IdRef="If_1">
+    <ui:ReadPDFText DisplayName="Read PDF Text" FileName="[&quot;Data/PDFs/Invoice-&quot;+in_InvoiceID+&quot;.pdf&quot;]" sap:VirtualizedContainerService.HintSize="1524,60" sap2010:WorkflowViewState.IdRef="ReadPDFText_6" Range="All" Text="[PDFValue]" />
+    <If Condition="[Type2PDF]" DisplayName="Type 1 or 2 " sap:VirtualizedContainerService.HintSize="1524,1618.4" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -89,13 +89,14 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="820.8,1568.8" sap2010:WorkflowViewState.IdRef="Sequence_92">
+        <Sequence sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="Sequence_92">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:Boolean" Name="Type2A" />
           </Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <ui:ImageFound DisplayName="Image Exists 'chrome.exe Invoice-2277...'" Found="[Type2A]" sap:VirtualizedContainerService.HintSize="798.4,107.2" sap2010:WorkflowViewState.IdRef="ImageFound_3">
@@ -224,7 +225,7 @@
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence DisplayName="Type 1" sap:VirtualizedContainerService.HintSize="749.6,1368.8" sap2010:WorkflowViewState.IdRef="Sequence_79">
+        <Sequence DisplayName="Type 1" sap:VirtualizedContainerService.HintSize="820.8,1468.8" sap2010:WorkflowViewState.IdRef="Sequence_79">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:Boolean" Name="Type1A" />
           </Sequence.Variables>
@@ -234,7 +235,7 @@
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:ImageFound DisplayName="Image Exists 'chrome.exe Invoice-5898...'" Found="[Type1A]" sap:VirtualizedContainerService.HintSize="727.2,107.2" sap2010:WorkflowViewState.IdRef="ImageFound_2">
+          <ui:ImageFound DisplayName="Image Exists 'chrome.exe Invoice-5898...'" Found="[Type1A]" sap:VirtualizedContainerService.HintSize="798.4,107.2" sap2010:WorkflowViewState.IdRef="ImageFound_2">
             <ui:ImageFound.Image>
               <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" InitialScalingFactor="1.25" TargetImageBase64="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" />
             </ui:ImageFound.Image>
@@ -242,17 +243,20 @@
               <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='Invoice-*.pdf - Google Chrome' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
             </ui:ImageFound.Target>
           </ui:ImageFound>
-          <If Condition="[Type1A]" sap:VirtualizedContainerService.HintSize="727.2,1096.8" sap2010:WorkflowViewState.IdRef="If_2">
+          <If Condition="[Type1A]" sap:VirtualizedContainerService.HintSize="798.4,1196.8" sap2010:WorkflowViewState.IdRef="If_2">
             <If.Then>
-              <Sequence DisplayName="Type 1 A" sap:VirtualizedContainerService.HintSize="265.6,947.2" sap2010:WorkflowViewState.IdRef="Sequence_88">
+              <Sequence DisplayName="Type 1 A" sap:VirtualizedContainerService.HintSize="336.8,1047.2" sap2010:WorkflowViewState.IdRef="Sequence_88">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ItemDesc" />
+                </Sequence.Variables>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <p:PdfToExcel OutputDatatable="{x:Null}" DisplayName="Pdf to excel" sap:VirtualizedContainerService.HintSize="243.2,22.4" sap2010:WorkflowViewState.IdRef="PdfToExcel_5" InputText="[PDFValue]" Keywords="[{&quot;Date:,Vendor&quot;, &quot;Vendor:,Tax ID&quot;, &quot;Tax ID:,Client&quot;, &quot;Total, 1&quot;,&quot;Subtotal:,Tax&quot;,&quot;Tax:,Total&quot;}]" OutputDataRow="[dr]" />
-                <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+                <p:PdfToExcel OutputDatatable="{x:Null}" DisplayName="Pdf to excel" sap:VirtualizedContainerService.HintSize="314.4,22.4" sap2010:WorkflowViewState.IdRef="PdfToExcel_5" InputText="[PDFValue]" Keywords="[{&quot;Date:,Vendor&quot;, &quot;Vendor:,Tax ID&quot;, &quot;Tax ID:,Client&quot;, &quot;Total, 1&quot;,&quot;Subtotal:,Tax&quot;,&quot;Tax:,Total&quot;}]" OutputDataRow="[dr]" />
+                <Assign sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_11">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:String">[out_Date]</OutArgument>
                   </Assign.To>
@@ -260,7 +264,7 @@
                     <InArgument x:TypeArguments="x:String">[dr(0).ToString]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+                <Assign sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_12">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:String">[out_Vendor]</OutArgument>
                   </Assign.To>
@@ -268,7 +272,7 @@
                     <InArgument x:TypeArguments="x:String">[dr(1).ToString]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_13">
+                <Assign sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_13">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:String">[out_TaxID]</OutArgument>
                   </Assign.To>
@@ -276,15 +280,16 @@
                     <InArgument x:TypeArguments="x:String">[dr(2).ToString]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_30">
+                <ui:Matches sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Matches_2" Input="[dr(3).ToString]" IsBuilderTabModified="False" Pattern="[^\d]*" RegexOption="IgnoreCase, Compiled" Result="[ItemDesc]" />
+                <Assign sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_30">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:String">[out_ItemDescription]</OutArgument>
                   </Assign.To>
                   <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">[dr(3).ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String">[ItemDesc(0).toString]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_14">
+                <Assign sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_14">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:Int32">[out_Subtotal]</OutArgument>
                   </Assign.To>
@@ -292,7 +297,7 @@
                     <InArgument x:TypeArguments="x:Int32">[CINT(dr(4).ToString.Trim.Substring(0,dr(4).ToString.length-3))]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_15">
+                <Assign sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_15">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:Int32">[out_Tax]</OutArgument>
                   </Assign.To>
@@ -300,7 +305,7 @@
                     <InArgument x:TypeArguments="x:Int32">[CINT(dr(5).ToString.Trim.Substring(0,dr(5).ToString.length-3))]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_16">
+                <Assign sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_16">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:Int32">[out_Total]</OutArgument>
                   </Assign.To>
@@ -308,12 +313,12 @@
                     <InArgument x:TypeArguments="x:Int32">[out_Tax + out_Subtotal]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_29">
+                <Assign sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_29">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:String">[out_Currency]</OutArgument>
                   </Assign.To>
                   <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">[dr(3).ToString.Substring(dr(3).ToString.Length-3)]</InArgument>
+                    <InArgument x:TypeArguments="x:String">[dr(4).ToString.Substring(dr(4).ToString.Length-3)]</InArgument>
                   </Assign.Value>
                 </Assign>
               </Sequence>
