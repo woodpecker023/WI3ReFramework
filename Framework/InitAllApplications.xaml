@@ -103,7 +103,7 @@
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Directory" sap:VirtualizedContainerService.HintSize="330.4,22.4" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="[Directory.GetCurrentDirectory + &quot;\Data\PDFs\&quot;]" />
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Warn" Message="[&quot;Current Directory is : &quot;  + Directory.GetCurrentDirectory + &quot;\\Data\\PDFs\\&quot;]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Warn" Message="[&quot;Current Directory is : &quot;  + Directory.GetCurrentDirectory + &quot;\Data\PDFs\&quot;]" />
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke delete files v2  workflow" sap:VirtualizedContainerService.HintSize="330.4,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="General\delete files v2 .xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="in_FilePath">[Directory.GetCurrentDirectory + "\Data\PDFs\"]</InArgument>
