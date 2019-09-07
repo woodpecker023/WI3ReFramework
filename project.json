@@ -1,39 +1,31 @@
 {
   "name": "WI3ReFramework",
-  "description": "Using Robotic Enterprise Framework to Solve WI3 Challenge from Acme Website ",
+  "description": "Blank Process",
   "main": "Main.xaml",
   "dependencies": {
-    "ActivitiesPdfToExcelV2": "[1.0.5]",
-    "DeleteFolder": "[1.0.2]",
-    "UiPath.Credentials.Activities": "[1.1.6479.13204]",
-    "UiPath.Excel.Activities": "[2.6.2]",
-    "UiPath.Mail.Activities": "[1.5.0]",
-    "UiPath.PDF.Activities": "[2.0.1]",
-    "UiPath.System.Activities": "[19.6.0]",
-    "UiPath.UIAutomation.Activities": "[19.6.0]"
+    "ActivitiesPdfToExcelV2": "1.0.5",
+    "UiPath.Credentials.Activities": "1.1.6479.13204",
+    "UiPath.Excel.Activities": "[2.5.4]",
+    "UiPath.Mail.Activities": "[1.4.1]",
+    "UiPath.PDF.Activities": "3.0.0",
+    "UiPath.System.Activities": "[19.8.0]",
+    "UiPath.UIAutomation.Activities": "[19.7.0]"
   },
-  "webServices": [],
-  "schemaVersion": "4.0",
-  "studioVersion": "19.7.0.0",
-  "projectVersion": "1.0.17",
+  "schemaVersion": "3.2",
+  "studioVersion": "19.4.4.0",
+  "projectVersion": "1.0.1",
   "runtimeOptions": {
     "autoDispose": false,
     "isPausable": true,
-    "requiresUserInteraction": true,
-    "supportsPersistence": false,
     "excludedLoggedData": [
       "Private:*",
       "*password*"
-    ],
-    "executionType": "Workflow"
+    ]
   },
-  "designOptions": {
-    "projectProfile": "Developement",
-    "outputType": "Process",
-    "libraryOptions": {
-      "includeOriginalXaml": false,
-      "privateWorkflows": []
-    }
+  "projectType": "Workflow",
+  "libraryOptions": {
+    "includeOriginalXaml": false,
+    "privateWorkflows": []
   },
   "arguments": {
     "input": [
@@ -46,5 +38,5 @@
     ],
     "output": []
   },
-  "expressionLanguage": "VisualBasic"
+  "webServices": []
 }
